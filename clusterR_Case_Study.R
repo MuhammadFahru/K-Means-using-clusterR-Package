@@ -30,8 +30,8 @@ long_X = data_housing[, "longitude"]
 # Yang nantinya kita akan gunakan dalam plot
 lat_y = data_housing[, "latitude"]
 
-# Plot  all the latitudes and longitudes
-plot(long_X, lat_y)
+# Tampilkan plot longitude dan latiude dari dataset
+plot(long_X, lat_y, col="#2B7DE9")
 
 # +------------------------------------------------------------------------+
 # |                      START Clustering Region                           |
@@ -42,6 +42,8 @@ plot(long_X, lat_y)
 housing = data_housing %>% select(longitude, latitude)
 
 # Lakukan clustering K-Means menggunakan KMeans_arma dari clusterR package
+# Disini kita set clusters = 2 yang artinya data akan dibagi ke dalam 2 cluster
+# Disini kita set juga n_iter = 300 yang artinya kita lakukan iterasi clustering sebanyak 300 kali sampai convergent
 km = KMeans_arma(housing,
                  clusters = 2,
                  n_iter = 300,
@@ -98,7 +100,7 @@ plot(long_result_B, lat_result_B, col="#C77CFF")
 # |       START Clustering House Value Cluster Region 1 atau Region A      |
 # +------------------------------------------------------------------------+
 
-# Selectmedian_house_value nya lalu simpan ke dalam variable house_data_A
+# Select median_house_value nya lalu simpan ke dalam variable house_data_A
 # Data ini yang akan kita gunakan untuk clustering
 # pada Cluster Region 1 atau Region A
 house_data_A = result_A[, "median_house_value"]
@@ -111,6 +113,8 @@ head(house_data_A_scaled, n=10)
 
 # Lakukan clustering K-Means menggunakan KMeans_arma dari clusterR package
 # Terhadap data house_data_A_scaled
+# Disini kita set clusters = 2 yang artinya data akan dibagi ke dalam 2 cluster
+# Disini kita set juga n_iter = 300 yang artinya kita lakukan iterasi clustering sebanyak 300 kali sampai convergent
 km_A = KMeans_arma(house_data_A_scaled,
                  clusters = 2,
                  n_iter = 300,
@@ -145,7 +149,7 @@ long_result_A_1 = result_A_1[, "longitude"]
 lat_result_A_1 = result_A_1[, "latitude"]
 
 # Tampilkan plot untuk Cluster House Price 1 (House Price A) pada data result_A
-plot(long_result_A_1, lat_result_A_1, col="#00BFC4")
+plot(long_result_A_1, lat_result_A_1, col="yellow")
 
 # Ambil data Cluster House Price 2 pada result_A
 result_A_2 = result_A[result_A$cluster_house_price == 2,]
@@ -157,7 +161,7 @@ long_result_A_2 = result_A_2[, "longitude"]
 lat_result_A_2 = result_A_2[, "latitude"]
 
 # Tampilkan plot untuk Cluster House Price 2 (House Price B) pada data result_A
-plot(long_result_A_2, lat_result_A_2, col="#00BFC4")
+plot(long_result_A_2, lat_result_A_2, col="green")
 
 # +------------------------------------------------------------------------+
 # |       END Clustering House Value Cluster Region 1 atau Region A        |
@@ -168,7 +172,7 @@ plot(long_result_A_2, lat_result_A_2, col="#00BFC4")
 # |       START Clustering House Value Cluster Region 2 atau Region B      |
 # +------------------------------------------------------------------------+
 
-# Selectmedian_house_value nya lalu simpan ke dalam variable house_data_B
+# Select median_house_value nya lalu simpan ke dalam variable house_data_B
 # Data ini yang akan kita gunakan untuk clustering
 # pada Cluster Region 2 atau Region B
 house_data_B = result_B[, "median_house_value"]
@@ -181,6 +185,8 @@ head(house_data_B_scaled, n=10)
 
 # Lakukan clustering K-Means menggunakan KMeans_arma dari clusterR package
 # Terhadap data house_data_B_scaled
+# Disini kita set clusters = 2 yang artinya data akan dibagi ke dalam 2 cluster
+# Disini kita set juga n_iter = 300 yang artinya kita lakukan iterasi clustering sebanyak 300 kali sampai convergent
 km_B = KMeans_arma(house_data_B_scaled,
                    clusters = 2,
                    n_iter = 300,
@@ -215,7 +221,7 @@ long_result_B_1 = result_B_1[, "longitude"]
 lat_result_B_1 = result_B_1[, "latitude"]
 
 # Tampilkan plot untuk Cluster House Price 1 (House Price A) pada data result_B
-plot(long_result_B_1, lat_result_B_1, col="#00BFC4")
+plot(long_result_B_1, lat_result_B_1, col="yellow")
 
 # Ambil data Cluster House Price 2 pada result_B
 result_B_2 = result_B[result_B$cluster_house_price == 2,]
@@ -227,7 +233,7 @@ long_result_B_2 = result_B_2[, "longitude"]
 lat_result_B_2 = result_B_2[, "latitude"]
 
 # Tampilkan plot untuk Cluster House Price 2 (House Price B) pada data result_B
-plot(long_result_B_2, lat_result_B_2, col="#00BFC4")
+plot(long_result_B_2, lat_result_B_2, col="green")
 
 # +------------------------------------------------------------------------+
 # |        END Clustering House Value Cluster Region 2 atau Region B       |
